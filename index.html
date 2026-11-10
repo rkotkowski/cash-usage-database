@@ -13,7 +13,7 @@
 :root{
   --paper:#F3F5F8; --card:#FFFFFF; --ink:#17202C; --muted:#586374; --rule:#D3DAE3;
   --accent:#2C4C9E; --accent-soft:#E3E9F7;
-  --grid:#E6EAF0; --axis:#C3CAD4; --ctx:#C2C9D3; --bar:#B9C1CC;
+  --grid:#E6EAF0; --axis:#C3CAD4; --ctx:#C9C3E6; --bar:#BDB6E3;
   --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
   --display:"Spectral", Georgia, "Times New Roman", serif;
   --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -23,12 +23,12 @@
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --paper:#11151B; --card:#191F27; --ink:#E5E9EF; --muted:#9AA4B2; --rule:#2B333E;
   --accent:#93AAF0; --accent-soft:#1F2A44;
-  --grid:#252C36; --axis:#3A434F; --ctx:#3E4753; --bar:#4A5361;
+  --grid:#252C36; --axis:#3A434F; --ctx:#3F3A63; --bar:#4F4880;
   --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; color-scheme:dark } }
 :root[data-theme="dark"]{
   --paper:#11151B; --card:#191F27; --ink:#E5E9EF; --muted:#9AA4B2; --rule:#2B333E;
   --accent:#93AAF0; --accent-soft:#1F2A44;
-  --grid:#252C36; --axis:#3A434F; --ctx:#3E4753; --bar:#4A5361;
+  --grid:#252C36; --axis:#3A434F; --ctx:#3F3A63; --bar:#4F4880;
   --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; color-scheme:dark }
 
 *{box-sizing:border-box}
@@ -362,7 +362,7 @@ function renderOverview(){
   const ser = Array.from(byIso, ([iso, rs]) => ({iso, name: rs[0].country,
     pts: rs.filter(r => r[m] != null).map(r => ({...r, v: r[m]})).sort((a,b) => a.year - b.year)})).filter(s => s.pts.length);
   const nObs = d3.sum(ser, s => s.pts.length);
-  document.getElementById("ov-sub").textContent = `${ser.length} countries, ${nObs} observations. Grey lines: all other countries.`;
+  document.getElementById("ov-sub").textContent = `${ser.length} countries, ${nObs} observations. Light lines: all other countries.`;
 
   // chips + legend
   const chips = document.getElementById("ov-chips"); chips.replaceChildren();
