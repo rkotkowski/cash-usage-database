@@ -256,7 +256,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
 
     <h3>Revision history</h3>
     <ul>
-      <li><b>v4 (November 2026)</b>: new observations for Austria (2025), Canada (2025), Denmark (2025) and South Korea (2014); revised figures for Canada (2021) and South Korea (2015, 2017).</li>
+      <li><b>v4 (November 2026)</b>: added Colombia; new observations for Austria (2025), Canada (2025), Denmark (2025) and South Korea (2014); revised figures for Canada (2021) and South Korea (2015, 2017).</li>
       <li><b>v3 (September 2026)</b>: added Chile, Thailand and South Africa; new observations for Switzerland (2025), Germany (2025), the United Kingdom (2025), the Netherlands (2025) and Norway (2026).</li>
       <li><b>v2 (May 2026)</b>: added the Philippines and Türkiye; new observations for Australia (2025), Canada (2024), the United Kingdom (2024), South Korea (2024) and Sweden (2025), plus earlier UK observations back to 2006.</li>
       <li><b>v1 (June 2025)</b>: initial release.</li>
@@ -302,7 +302,7 @@ function init(db){
     .forEach(([b, t]) => facts.append(el("span", {}, el("b", {text: String(b)}), document.createTextNode(" " + t))));
   document.getElementById("ft-upd").textContent = "Last update: " + fmtDate(DB.updated);
   const fnLi = document.getElementById("ab-fn");
-  fnLi.textContent = "Some sources need particular care: " + DB.footnotes.map(f => f.replace(/^\*+\s*/, "")).join(" ") + " These sources are marked " + DB.footnotes.map(f => f.match(/^\*+/)[0]).join(", ").replace(/, ([^,]*)$/, " and $1") + " in the tables.";
+  fnLi.textContent = "Some sources need particular care: " + DB.footnotes.map(f => f.replace(/^[*†‡]+\s*/, "")).join(" ") + " These sources are marked " + DB.footnotes.map(f => f.match(/^[*†‡]+/)[0]).join(", ").replace(/, ([^,]*)$/, " and $1") + " in the tables.";
 
   const add = document.getElementById("ov-add"), csel = document.getElementById("ct-sel");
   countries.forEach(c => { add.append(el("option", {value: c.iso, text: c.name})); csel.append(el("option", {value: c.iso, text: c.name})); });
@@ -471,7 +471,7 @@ function linkCell(r){
 }
 function notesFor(rows, target){
   const used = new Set(rows.map(r => r.note).filter(Boolean)), box = document.getElementById(target); box.replaceChildren();
-  DB.footnotes.filter(f => used.has(f.match(/^\*+/)[0])).forEach(f => box.append(el("p", {text: f})));
+  DB.footnotes.filter(f => used.has(f.match(/^[*†‡]+/)[0])).forEach(f => box.append(el("p", {text: f})));
 }
 function renderCountry(){
   const iso = state.country, rs = byIso.get(iso).slice().sort((a,b) => a.year - b.year), name = rs[0].country;

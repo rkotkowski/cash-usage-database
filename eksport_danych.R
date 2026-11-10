@@ -51,13 +51,13 @@ d$cash_usage_value  <- num(d$cash_usage_value)
 d$study_year <- as.integer(d$study_year)
 d <- d[order(d$ISO2, -d$study_year), ]
 
-# Przypisy: "*" i "**" na końcu nazwy źródła odsyłają do arkusza "footnotes".
+# Przypisy: "*", "**", "***", "†", "‡" na końcu nazwy źródła odsyłają do arkusza "footnotes".
 fn <- read.xlsx(src, sheet = "footnotes", colNames = FALSE)[[1]]
 fn <- unent(trimws(fn[!is.na(fn)]))
-mark <- regmatches(d$source, regexpr("\\*+$", d$source))
+mark <- regmatches(d$source, regexpr("[*†‡]+$", d$source))
 d$note <- ""
-d$note[grepl("\\*+$", d$source)] <- mark
-d$source_clean <- trimws(sub("\\*+$", "", d$source))
+d$note[grepl("[*†‡]+$", d$source)] <- mark
+d$source_clean <- trimws(sub("[*†‡]+$", "", d$source))
 
 split_links <- function(s) {
   if (is.na(s) || !nzchar(s)) return(character(0))
