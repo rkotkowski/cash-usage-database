@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light">
 <title>Cash Usage Database</title>
-<meta name="description" content="Share of cash in consumer payments across countries and years, compiled from central bank payment diaries and surveys.">
+<meta name="description" content="Share of cash in consumer payments across countries and years, compiled from payment diaries and surveys run by central banks and other financial institutions.">
 <meta name="author" content="Radosław Kotkowski, Paweł Dybka, Anna Iwona Piotrowska, Leo Van Hove">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='8' width='26' height='16' rx='3' fill='none' stroke='%232C4C9E' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='4' fill='none' stroke='%232C4C9E' stroke-width='2.4'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -133,7 +133,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
 <header class="top">
   <span class="eyebrow">Open dataset</span>
   <h1><a href="#/overview">Cash Usage Database</a></h1>
-  <p class="lede">How much of everyday consumer spending is still paid in cash? Cash shares in the number and value of consumer payments, compiled from central bank payment diaries and surveys.</p>
+  <p class="lede">How much of everyday consumer spending is still paid in cash? Cash shares in the number and value of consumer payments, compiled from payment diaries and surveys run by central banks and other financial institutions.</p>
   <div class="facts" id="facts"></div>
   <nav class="tabs" aria-label="Sections">
     <a href="#/overview" data-v="overview">Overview</a>
@@ -302,7 +302,7 @@ function init(db){
     .forEach(([b, t]) => facts.append(el("span", {}, el("b", {text: String(b)}), document.createTextNode(" " + t))));
   document.getElementById("ft-upd").textContent = "Last update: " + fmtDate(DB.updated);
   const fnLi = document.getElementById("ab-fn");
-  fnLi.textContent = "Two groups need particular care: " + DB.footnotes.map(f => f.replace(/^\*+\s*/, "")).join(" ") + " These sources are marked * and ** in the tables.";
+  fnLi.textContent = "Some sources need particular care: " + DB.footnotes.map(f => f.replace(/^\*+\s*/, "")).join(" ") + " These sources are marked " + DB.footnotes.map(f => f.match(/^\*+/)[0]).join(", ").replace(/, ([^,]*)$/, " and $1") + " in the tables.";
 
   const add = document.getElementById("ov-add"), csel = document.getElementById("ct-sel");
   countries.forEach(c => { add.append(el("option", {value: c.iso, text: c.name})); csel.append(el("option", {value: c.iso, text: c.name})); });
