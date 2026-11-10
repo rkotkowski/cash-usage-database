@@ -8,8 +8,9 @@ Share of cash in the number and value of consumer payments across countries and 
 |---|---|
 | `index.html` | the whole site (HTML + JS, no server, no build step) |
 | `data/cud.json` | data used by the site: observations, sources, links, footnotes |
-| `data/cash_usage_database.csv`, `data/cash_usage_database.xlsx` | download files |
-| `eksport_danych.R` | builds the three `data/` files from the master `RRRRMMDD_Cash Usage Database.xlsx` |
+| `eksport_danych.R` | builds `data/cud.json` from the master `RRRRMMDD_Cash Usage Database.xlsx` |
+
+Downloads are not served from this site; the Data tab links to the archived release on Mendeley Data (https://data.mendeley.com/drafts/529hmx9pk6).
 | `vendor/d3.min.js` | d3 7.8.5 (ISC licence) |
 | `fonts/` | Spectral, IBM Plex Sans, IBM Plex Mono (SIL Open Font License 1.1) |
 

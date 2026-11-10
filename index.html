@@ -147,7 +147,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
   <nav class="tabs" aria-label="Sections">
     <a href="#/overview" data-v="overview">Overview</a>
     <a href="#/country" data-v="country">Country profiles</a>
-    <a href="#/data" data-v="data">Data &amp; download</a>
+    <a href="#/data" data-v="data">Data</a>
     <a href="#/about" data-v="about">About</a>
   </nav>
 </header>
@@ -175,7 +175,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
     </header>
     <div class="legend" id="ov-legend"></div>
     <div class="chart" id="ov-chart"></div>
-    <p class="note">Each line joins one country's observations; years without a survey are not interpolated values. Up to four countries can be highlighted; click any point to highlight its country. Every value is also listed in <a href="#/data">Data &amp; download</a>.</p>
+    <p class="note">Each line joins one country's observations; years without a survey are not interpolated values. Up to four countries can be highlighted; click any point to highlight its country. Every value is also listed under <a href="#/data">Data</a>.</p>
   </div>
 
   <div class="panel">
@@ -214,12 +214,10 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
 <!-- DATA -->
 <section class="view" id="v-data" aria-labelledby="h-dt">
   <div class="panel">
-    <header><h2 id="h-dt">Data &amp; download</h2>
-      <span class="sub">The full database. Shares are fractions of one in the files and percentages on this page.</span></header>
+    <header><h2 id="h-dt">Data</h2>
+      <span class="sub">The full database, shown as percentages. To download it, use the archived release on Mendeley Data.</span></header>
     <div class="dl">
-      <a class="btn" href="data/cash_usage_database.xlsx" download>Excel (.xlsx)</a>
-      <a class="btn" href="data/cash_usage_database.csv" download>CSV</a>
-      <a class="btn" href="data/cud.json" download>JSON</a>
+      <a class="btn" href="https://data.mendeley.com/drafts/529hmx9pk6" target="_blank" rel="noopener">Download from Mendeley Data ↗</a>
     </div>
     <div class="filters">
       <label>Filter <input type="search" id="dt-q" placeholder="Country, ISO code, year or source"></label>
@@ -241,7 +239,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
 <section class="view" id="v-about" aria-labelledby="h-ab">
   <div class="panel prose">
     <h2 id="h-ab">About the database</h2>
-    <p>The Cash Usage Database collects estimates of how much consumers pay in cash, country by country and year by year. It is a compilation of published results from payment diary studies and other surveys of consumer payment behaviour, most of them run by central banks. It is free to use for research, policy work, teaching and journalism. If you use the data, please cite the paper below.</p>
+    <p>The Cash Usage Database collects estimates of how much consumers pay in cash, country by country and year by year. It is a compilation of published results from payment diary studies and other surveys of consumer payment behaviour, most of them run by central banks. It is free to use for research, policy work, teaching and journalism. The dataset can be downloaded from <a href="https://data.mendeley.com/drafts/529hmx9pk6" target="_blank" rel="noopener">Mendeley Data</a>. If you use the data, please cite the paper below.</p>
 
     <h3>Variables</h3>
     <dl class="defs">

@@ -1,5 +1,5 @@
-# Eksport Cash Usage Database (xlsx) do plików strony: data/cud.json, data/cash_usage_database.csv,
-# data/cash_usage_database.xlsx.
+# Eksport Cash Usage Database (xlsx) do pliku strony data/cud.json.
+# Pliki do pobrania nie są na stronie – strona linkuje do wydania na Mendeley Data.
 # Użycie:  Rscript eksport_danych.R ../RRRRMMDD_Cash\ Usage\ Database.xlsx
 # Bez argumentu bierze najnowszy plik *_Cash Usage Database.xlsx z katalogu nadrzędnego.
 
@@ -84,14 +84,6 @@ out <- list(
 )
 dir.create("data", showWarnings = FALSE)
 writeLines(toJSON(out, auto_unbox = TRUE, null = "null", na = "null", digits = NA), "data/cud.json", useBytes = TRUE)
-
-csv <- data.frame(
-  ISO2 = d$ISO2, country_name = d$country_name, study_year = d$study_year,
-  cash_usage_volume = d$cash_usage_volume, cash_usage_value = d$cash_usage_value,
-  institution = d$institution, source = d$source, source_link = d$source_link
-)
-write.csv(csv, "data/cash_usage_database.csv", row.names = FALSE, na = "", fileEncoding = "UTF-8")
-file.copy(src, "data/cash_usage_database.xlsx", overwrite = TRUE)
 
 message(sprintf("Zapisano: %d obserwacji, %d krajów, lata %d–%d",
                 out$n_obs, out$n_countries, out$year_min, out$year_max))
