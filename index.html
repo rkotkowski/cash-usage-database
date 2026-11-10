@@ -254,7 +254,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
       <li>Parallel surveys for the same country and year are not added.</li>
       <li>Where the source changes over time, the series has a break. Austria: OeNB surveys up to 2016 and for 2025, ECB SPACE for 2019–2024.</li>
       <li>Studies by independent researchers are used only where no central-bank survey exists for that country and year, and only if the sample is nationally representative.</li>
-      <li>Administrative data (Hungary and Croatia, cash register data, marked ‡) are used where they give a longer consistent series than the available surveys; for Croatia they replace the single ECB SPACE 2024 observation.</li>
+      <li>Administrative data (Hungary, marked ‡; Croatia, marked ‖) are used where they give a longer consistent series than the available surveys; for Croatia they replace the single ECB SPACE 2024 observation.</li>
     </ul>
 
     <h3>Considered but not included</h3>
@@ -316,7 +316,7 @@ function init(db){
     .forEach(([b, t]) => facts.append(el("span", {}, el("b", {text: String(b)}), document.createTextNode(" " + t))));
   document.getElementById("ft-upd").textContent = "Last update: " + fmtDate(DB.updated);
   const fnLi = document.getElementById("ab-fn");
-  fnLi.textContent = "Some sources need particular care: " + DB.footnotes.map(f => f.replace(/^[*†‡]+\s*/, "")).join(" ") + " These sources are marked " + DB.footnotes.map(f => f.match(/^[*†‡]+/)[0]).join(", ").replace(/, ([^,]*)$/, " and $1") + " in the tables.";
+  fnLi.textContent = "Some sources need particular care: " + DB.footnotes.map(f => f.replace(/^[*†‡§‖¶]+\s*/, "")).join(" ") + " These sources are marked " + DB.footnotes.map(f => f.match(/^[*†‡§‖¶]+/)[0]).join(", ").replace(/, ([^,]*)$/, " and $1") + " in the tables.";
 
   const add = document.getElementById("ov-add"), csel = document.getElementById("ct-sel");
   countries.forEach(c => { add.append(el("option", {value: c.iso, text: c.name})); csel.append(el("option", {value: c.iso, text: c.name})); });
@@ -485,7 +485,7 @@ function linkCell(r){
 }
 function notesFor(rows, target){
   const used = new Set(rows.map(r => r.note).filter(Boolean)), box = document.getElementById(target); box.replaceChildren();
-  DB.footnotes.filter(f => used.has(f.match(/^[*†‡]+/)[0])).forEach(f => box.append(el("p", {text: f})));
+  DB.footnotes.filter(f => used.has(f.match(/^[*†‡§‖¶]+/)[0])).forEach(f => box.append(el("p", {text: f})));
 }
 function renderCountry(){
   const iso = state.country, rs = byIso.get(iso).slice().sort((a,b) => a.year - b.year), name = rs[0].country;
