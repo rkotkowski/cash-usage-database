@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>Cash Usage Database</title>
 <meta name="description" content="Share of cash in consumer payments across countries and years, compiled from central bank payment diaries and surveys.">
 <meta name="author" content="Radosław Kotkowski, Paweł Dybka, Anna Iwona Piotrowska, Leo Van Hove">
@@ -20,16 +21,6 @@
   --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   color-scheme:light;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --paper:#11151B; --card:#191F27; --ink:#E5E9EF; --muted:#9AA4B2; --rule:#2B333E;
-  --accent:#93AAF0; --accent-soft:#1F2A44;
-  --grid:#252C36; --axis:#3A434F; --ctx:#3F3A63; --bar:#4F4880;
-  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; color-scheme:dark } }
-:root[data-theme="dark"]{
-  --paper:#11151B; --card:#191F27; --ink:#E5E9EF; --muted:#9AA4B2; --rule:#2B333E;
-  --accent:#93AAF0; --accent-soft:#1F2A44;
-  --grid:#252C36; --axis:#3A434F; --ctx:#3F3A63; --bar:#4F4880;
-  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; color-scheme:dark }
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 var(--body);
@@ -325,7 +316,6 @@ function init(db){
 
   window.addEventListener("hashchange", route);
   let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { if (cur === "overview") renderOverview(); if (cur === "country") renderCountry(); }, 120); }).observe(document.querySelector(".wrap"));
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => route());
   route();
 }
 
