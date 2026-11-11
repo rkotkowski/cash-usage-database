@@ -53,6 +53,7 @@ section.view.on{display:flex}
 .panel header{display:flex;flex-direction:column;gap:3px}
 .sub{font-size:.85rem;color:var(--muted)}
 .note{font-size:.82rem;color:var(--muted);max-width:82ch}
+#ct-notes,#dt-notes,#ct-notes p,#dt-notes p{max-width:none}
 
 /* filter row */
 .filters{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
@@ -108,7 +109,8 @@ th button[aria-sort="ascending"]::after{content:" ↑";opacity:1}
 th button[aria-sort="descending"]::after{content:" ↓";opacity:1}
 td{border-bottom:1px solid var(--rule);padding:7px 8px;vertical-align:baseline}
 td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
-td.num+td:not(.num),th.num+th:not(.num){padding-left:56px}
+td.num+td:not(.num),th.num+th:not(.num){padding-left:112px}
+@media (max-width:640px){td.num+td:not(.num),th.num+th:not(.num){padding-left:24px}}
 td.src a+a::before{content:"; ";color:var(--muted)}
 tr.clickable{cursor:pointer}
 tr.clickable:hover td{background:var(--accent-soft)}
