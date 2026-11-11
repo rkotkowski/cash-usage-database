@@ -12,7 +12,7 @@ The Cash Usage Database brings together the share of cash in the number and valu
 | `vendor/d3.min.js` | d3 7.8.5 (ISC licence) |
 | `fonts/` | Spectral, IBM Plex Sans, IBM Plex Mono (SIL Open Font License 1.1) |
 
-Downloads are not served from this site; the Data tab links to the archived release on Mendeley Data (https://doi.org/10.17632/529hmx9pk6.3).
+Downloads are not served from this site; the Data tab links to the archived release on Mendeley Data (https://doi.org/10.17632/529hmx9pk6.4).
 
 The site loads nothing from other servers and uses no cookies or analytics.
 
