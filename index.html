@@ -491,14 +491,20 @@ function notesFor(rows, target){
 function renderCountry(){
   const iso = state.country, rs = byIso.get(iso).slice().sort((a,b) => a.year - b.year), name = rs[0].country;
   document.getElementById("ct-sel").value = iso;
-  // English description for institutions known only by their name in the national language
+  // Short English description of each institution, shown under "Main source"
   const INST_EN = {
     "Oesterreichische Nationalbank": "central bank of Austria", "Banco Central de Chile": "central bank of Chile",
     "Banco de la República": "central bank of Colombia", "Deutsche Bundesbank": "central bank of Germany",
     "Danmarks Nationalbank": "central bank of Denmark", "Hrvatska narodna banka": "central bank of Croatia",
     "Magyar Nemzeti Bank": "central bank of Hungary", "De Nederlandsche Bank": "central bank of the Netherlands",
     "Norges Bank": "central bank of Norway", "Bangko Sentral ng Pilipinas": "central bank of the Philippines",
-    "Narodowy Bank Polski": "central bank of Poland", "Sveriges Riksbank": "central bank of Sweden"};
+    "Narodowy Bank Polski": "central bank of Poland", "Sveriges Riksbank": "central bank of Sweden",
+    "Reserve Bank of Australia": "central bank of Australia", "Bank of Canada": "central bank of Canada",
+    "Swiss National Bank": "central bank of Switzerland", "Bank of Korea": "central bank of South Korea",
+    "Bank of Thailand": "central bank of Thailand", "Central Bank of the Republic of Türkiye": "central bank of Türkiye",
+    "South African Reserve Bank": "central bank of South Africa", "European Central Bank": "central bank of the euro area",
+    "Federal Reserve Bank of Atlanta": "part of the US Federal Reserve System", "Federal Reserve Bank of Boston": "part of the US Federal Reserve System",
+    "UK Finance": "UK banking industry association"};
   document.getElementById("h-ct").textContent = name;
   const last = k => { const r = rs.filter(r => r[k] != null).pop(); return r ? [pct(r[k]), r.year] : ["–", null]; };
   const [lv, ly] = last("vol"), [vv, vy] = last("val");
