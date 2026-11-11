@@ -504,7 +504,7 @@ function renderCountry(){
     "Bank of Thailand": "central bank of Thailand", "Central Bank of the Republic of Türkiye": "central bank of Türkiye",
     "South African Reserve Bank": "central bank of South Africa", "European Central Bank": "central bank of the euro area",
     "Federal Reserve Bank of Atlanta": "part of the US Federal Reserve System", "Federal Reserve Bank of Boston": "part of the US Federal Reserve System",
-    "UK Finance": "UK banking industry association"};
+    "UK Finance": "trade association for the UK banking and financial services sector"};
   document.getElementById("h-ct").textContent = name;
   const last = k => { const r = rs.filter(r => r[k] != null).pop(); return r ? [pct(r[k]), r.year] : ["–", null]; };
   const [lv, ly] = last("vol"), [vv, vy] = last("val");
