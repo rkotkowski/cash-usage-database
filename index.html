@@ -491,12 +491,20 @@ function notesFor(rows, target){
 function renderCountry(){
   const iso = state.country, rs = byIso.get(iso).slice().sort((a,b) => a.year - b.year), name = rs[0].country;
   document.getElementById("ct-sel").value = iso;
+  // English description for institutions known only by their name in the national language
+  const INST_EN = {
+    "Oesterreichische Nationalbank": "central bank of Austria", "Banco Central de Chile": "central bank of Chile",
+    "Banco de la República": "central bank of Colombia", "Deutsche Bundesbank": "central bank of Germany",
+    "Danmarks Nationalbank": "central bank of Denmark", "Hrvatska narodna banka": "central bank of Croatia",
+    "Magyar Nemzeti Bank": "central bank of Hungary", "De Nederlandsche Bank": "central bank of the Netherlands",
+    "Norges Bank": "central bank of Norway", "Bangko Sentral ng Pilipinas": "central bank of the Philippines",
+    "Narodowy Bank Polski": "central bank of Poland", "Sveriges Riksbank": "central bank of Sweden"};
   document.getElementById("h-ct").textContent = name;
   const last = k => { const r = rs.filter(r => r[k] != null).pop(); return r ? [pct(r[k]), r.year] : ["–", null]; };
   const [lv, ly] = last("vol"), [vv, vy] = last("val");
   const tiles = document.getElementById("ct-tiles"); tiles.replaceChildren();
   [["Cash share by number", lv, ly ? `latest, ${ly}` : "not reported"], ["Cash share by value", vv, vy ? `latest, ${vy}` : "not reported"],
-   ["Observations", String(rs.length), `${rs[0].year}–${rs[rs.length - 1].year}`], ["Main source", rs[rs.length - 1].inst, ""]]
+   ["Observations", String(rs.length), `${rs[0].year}–${rs[rs.length - 1].year}`], ["Main source", rs[rs.length - 1].inst, INST_EN[rs[rs.length - 1].inst] || ""]]
    .forEach(([k, v, d], i) => tiles.append(el("div", {cls:"tile"}, el("span", {cls:"k", text:k}), el("span", {cls:"v", text:v, style: i === 3 ? "font-size:1.1rem;line-height:1.3;margin-top:6px" : ""}), el("span", {cls:"d", text:d}))));
   document.getElementById("ct-sub").textContent = rs.length === 1 ? "One survey so far." : `${rs.length} surveys, ${rs[0].year}–${rs[rs.length - 1].year}.`;
 
