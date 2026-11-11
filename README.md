@@ -1,6 +1,6 @@
 # Cash Usage Database
 
-Share of cash in the number and value of consumer payments across countries and years, compiled from central bank payment diaries and surveys (199 observations, 35 countries, 1996–2026).
+The Cash Usage Database brings together the share of cash in the number and value of consumer payments across countries and years, taken from payment diaries and surveys run by central banks and other financial institutions (226 observations, 37 countries, 1996–2026).
 
 ## Contents
 

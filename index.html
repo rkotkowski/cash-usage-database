@@ -108,6 +108,7 @@ th button[aria-sort="ascending"]::after{content:" ↑";opacity:1}
 th button[aria-sort="descending"]::after{content:" ↓";opacity:1}
 td{border-bottom:1px solid var(--rule);padding:7px 8px;vertical-align:baseline}
 td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.num+td:not(.num),th.num+th:not(.num){padding-left:28px}
 td.src a+a::before{content:"; ";color:var(--muted)}
 tr.clickable{cursor:pointer}
 tr.clickable:hover td{background:var(--accent-soft)}
@@ -133,7 +134,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
 <header class="top">
   <span class="eyebrow">Open dataset</span>
   <h1><a href="#/overview">Cash Usage Database</a></h1>
-  <p class="lede">How much of everyday consumer spending is still paid in cash? Cash shares in the number and value of consumer payments, compiled from payment diaries and surveys run by central banks and other financial institutions.</p>
+  <p class="lede">How much of everyday consumer spending is still paid in cash? The database brings together cash shares in the number and value of consumer payments, taken from payment diaries and surveys run by central banks and other financial institutions.</p>
   <div class="facts" id="facts"></div>
   <nav class="tabs" aria-label="Sections">
     <a href="#/overview" data-v="overview">Overview</a>
@@ -166,7 +167,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
     </header>
     <div class="legend" id="ov-legend"></div>
     <div class="chart" id="ov-chart"></div>
-    <p class="note">Each line joins one country's observations; years without a survey are not interpolated values. Up to four countries can be highlighted; click any point to highlight its country. Every value is also listed under <a href="#/data">Data</a>.</p>
+    <p class="note">Each point is a survey year. The lines only connect a country's surveys; they are not estimates for the years in between. Up to four countries can be highlighted; click any point to highlight its country. Every value is also listed under <a href="#/data">Data</a>.</p>
   </div>
 
   <div class="panel">
@@ -235,17 +236,17 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
 
     <h3>Variables</h3>
     <dl class="defs">
-      <dt>cash_usage_volume</dt><dd>Share of cash in the number of consumer payments (0–1).</dd>
-      <dt>cash_usage_value</dt><dd>Share of cash in the value of consumer payments (0–1). Missing where the source reports only the number share.</dd>
+      <dt>cash_usage_volume</dt><dd>Share of cash in the number of consumer payments. Stored as a fraction <span style="white-space:nowrap">(0–1)</span> in the downloadable file; shown as a percentage on this site.</dd>
+      <dt>cash_usage_value</dt><dd>Share of cash in the value of consumer payments. Stored as a fraction <span style="white-space:nowrap">(0–1)</span> in the downloadable file; shown as a percentage on this site. Missing where the source reports only the number share.</dd>
       <dt>study_year</dt><dd>Year in which the survey data were collected, not the year of publication.</dd>
       <dt>institution, source</dt><dd>Who ran the survey, and the publication the figures are taken from. The link points to that publication.</dd>
     </dl>
 
     <h3>Comparability</h3>
     <ul>
+      <li>Levels are more comparable within a country over time than across countries. Surveys differ in what counts as a consumer payment (point of sale only, or also bills, online purchases and person-to-person transfers), in age range and in season.</li>
       <li>Most figures come from payment diaries, in which respondents record every payment over a few days. Some come from recall surveys, where respondents report their payments over a past period from memory.</li>
       <li id="ab-fn"></li>
-      <li>Surveys differ in what counts as a consumer payment (point of sale only, or also bills, online purchases and person-to-person transfers), in age range and in season. Levels are therefore more comparable within a country over time than across countries.</li>
     </ul>
 
     <h3>Source selection</h3>
@@ -259,7 +260,7 @@ footer{border-top:1px solid var(--rule);padding-top:14px;font-size:.82rem;color:
 
     <h3>Considered but not included</h3>
     <ul>
-      <li>Hungary 2010: a Magyar Nemzeti Bank household payment diary (Takács, 2011) puts cash at 78% of the number and 50% of the value of payments. Not included because the Hungarian series uses online cash register data, and the two methods are not comparable.</li>
+      <li>Hungary 2010: a household payment diary by the Magyar Nemzeti Bank, Hungary's central bank (Takács, 2011) puts cash at 78% of the number and 50% of the value of payments. Not included because the Hungarian series uses online cash register data, and the two methods are not comparable.</li>
     </ul>
 
     <h3>How to cite</h3>
@@ -316,7 +317,7 @@ function init(db){
     .forEach(([b, t]) => facts.append(el("span", {}, el("b", {text: String(b)}), document.createTextNode(" " + t))));
   document.getElementById("ft-upd").textContent = "Last update: " + fmtDate(DB.updated);
   const fnLi = document.getElementById("ab-fn");
-  fnLi.textContent = "Some sources need particular care: " + DB.footnotes.map(f => f.replace(/^[*†‡§‖¶]+\s*/, "")).join(" ") + " These sources are marked " + DB.footnotes.map(f => f.match(/^[*†‡§‖¶]+/)[0]).join(", ").replace(/, ([^,]*)$/, " and $1") + " in the tables.";
+  fnLi.textContent = "Some sources need particular care. " + DB.footnotes.map(f => f.replace(/^[*†‡§‖¶]+\s*/, "")).join(" ") + " These sources are marked " + DB.footnotes.map(f => f.match(/^[*†‡§‖¶]+/)[0]).join(", ").replace(/, ([^,]*)$/, " and $1") + " in the tables.";
 
   const add = document.getElementById("ov-add"), csel = document.getElementById("ct-sel");
   countries.forEach(c => { add.append(el("option", {value: c.iso, text: c.name})); csel.append(el("option", {value: c.iso, text: c.name})); });
